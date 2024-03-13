@@ -13,6 +13,8 @@ class PersonaController extends Controller
     public function index()
     {
         //
+        $personas = Persona::all();
+        return view('layouts.persona.index', compact('personas'));
     }
 
     /**
@@ -21,6 +23,7 @@ class PersonaController extends Controller
     public function create()
     {
         //
+        return view('layouts.persona.create');
     }
 
     /**
@@ -29,6 +32,8 @@ class PersonaController extends Controller
     public function store(Request $request)
     {
         //
+        Persona::create($request->all());
+        return redirect()->route('persona.index');
     }
 
     /**
@@ -52,7 +57,7 @@ class PersonaController extends Controller
      */
     public function update(Request $request, Persona $persona)
     {
-        //
+        
     }
 
     /**
