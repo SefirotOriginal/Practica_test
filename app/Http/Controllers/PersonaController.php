@@ -50,6 +50,7 @@ class PersonaController extends Controller
     public function edit(Persona $persona)
     {
         //
+        return view('layouts.persona.edit', compact('persona'));
     }
 
     /**
@@ -57,7 +58,8 @@ class PersonaController extends Controller
      */
     public function update(Request $request, Persona $persona)
     {
-        
+        $persona->update($request->all());
+        return redirect()->route('persona.index');
     }
 
     /**
@@ -66,5 +68,7 @@ class PersonaController extends Controller
     public function destroy(Persona $persona)
     {
         //
+        $persona->delete();
+        return redirect()->route('persona.index');
     }
 }

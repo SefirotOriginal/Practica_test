@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-           Personas
+            Personas
         </h2>
     </x-slot>
 
@@ -10,17 +10,13 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
-                        <a class=" text-sm bg-sky-500 text-white hover:bg-blue-700  font-bold  px-4 py-2 rounded outline-none focus:outline-none mb-5 ease-linear transition-all duration-150" type="button"
-                            href={{ route ('persona.create') }}>
+                    <div class="relative w-full px-4 max-w-full flex-grow flex-1 text-right">
+                        <a class=" text-sm bg-sky-500 text-white hover:bg-blue-700  font-bold  px-4 py-2 rounded outline-none focus:outline-none mb-5 ease-linear transition-all duration-150" type="button" href={{ route ('persona.create') }}>
                             Agregar Persona
-                        </a>                    
+                        </a>
                     </div>
-
-
-
-                   {{-- Table --}}
-                   <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                    {{-- Table --}}
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead class=" text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
@@ -43,24 +39,28 @@
                             </thead>
                             <tbody>
                                 @foreach ($personas as $persona)
-                                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{$persona->nombre}}
-                                        </th>
-                                        <th class="px-6 py-4">
-                                            {{$persona->apellido}}
-                                        </th>
-                                        <th/th class="px-6 py-4">
-                                            {{$persona->fecha_nacimiento}}
-                                        </th>
-                                        <th/th class="px-6 py-4">
-                                            {{$persona->genero}}
-                                        </th>
-                                        <th/th class="px-6 py-4">
-                                            <a href="{{ route('persona.edit', $persona->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
-                                            <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline px-2">Borrar</a>
-                                        </th>
-                                    </tr>
+                                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{$persona->nombre}}
+                                    </th>
+                                    <th class="px-6 py-4">
+                                        {{$persona->apellido}}
+                                    </th>
+                                    <th /th class="px-6 py-4">
+                                        {{$persona->fecha_nacimiento}}
+                                    </th>
+                                    <th /th class="px-6 py-4">
+                                        {{$persona->genero}}
+                                    </th>
+                                    <th /th class="px-6 py-4">
+                                        <a href="{{ route('persona.edit', $persona->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
+                                        <form class="inline" action="{{ route('persona.destroy', $persona->id) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1">Borrar</button>
+                                        </form>
+                                    </th>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
