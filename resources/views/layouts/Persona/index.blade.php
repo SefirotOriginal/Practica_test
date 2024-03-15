@@ -54,11 +54,7 @@
                                     </th>
                                     <th /th class="px-6 py-4">
                                         <a href="{{ route('persona.edit', $persona->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
-                                        <form class="inline" action="{{ route('persona.destroy', $persona->id) }}" method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1">Borrar</button>
-                                        </form>
+                                        <a href="{{ route('persona.destroy', $persona->id) }}" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1"  data-confirm-delete="true">Borrar</a> 
                                     </th>
                                 </tr>
                                 @endforeach

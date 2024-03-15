@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PersonaController extends Controller
 {
@@ -14,6 +15,11 @@ class PersonaController extends Controller
     {
         //
         $personas = Persona::all();
+
+        $title = 'Borrar persona';
+        $text = "¿Estas seguro que quieres eliminar este registro?";
+        confirmDelete($title, $text);
+
         return view('layouts.persona.index', compact('personas'));
     }
 
@@ -33,7 +39,7 @@ class PersonaController extends Controller
     {
         //
         Persona::create($request->all());
-        return redirect()->route('persona.index');
+        return redirect()->route('persona.index')->withToastSuccess('Se ha creado exitosamente!');
     }
 
     /**
@@ -59,7 +65,7 @@ class PersonaController extends Controller
     public function update(Request $request, Persona $persona)
     {
         $persona->update($request->all());
-        return redirect()->route('persona.index');
+        return redirect()->route('persona.index')->withToastSuccess('Se ha editado exitosamente!');
     }
 
     /**
