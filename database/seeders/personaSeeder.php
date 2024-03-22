@@ -19,6 +19,7 @@ class personaSeeder extends Seeder
         $persona->apellido = 'Perez';
         $persona->fecha_nacimiento = '1990-01-01';
         $persona->genero = 'M';
+        $persona->profesion_id = '1';
         $persona->save();
         
         $persona = new Persona();
@@ -26,6 +27,7 @@ class personaSeeder extends Seeder
         $persona->apellido = 'Lopez';
         $persona->fecha_nacimiento = '1995-01-01';
         $persona->genero = 'F';
+        $persona->profesion_id = '1';
         $persona->save();
         
         $persona = new Persona();
@@ -33,6 +35,7 @@ class personaSeeder extends Seeder
         $persona->apellido = 'Cordova';
         $persona->fecha_nacimiento = '2001-11-25';
         $persona->genero = 'F';
+        $persona->profesion_id = '1';
         $persona->save();
 
     }

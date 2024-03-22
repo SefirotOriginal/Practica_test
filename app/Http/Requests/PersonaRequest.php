@@ -26,7 +26,8 @@ class PersonaRequest extends FormRequest
             'nombre' => 'required',
             'Apellido' => 'required',
             'fecha_nacimiento' => 'required',
-            'genero' => 'required'
+            'genero' => 'required',
+            'profesion_id' => 'required'
         ];
     }
 }

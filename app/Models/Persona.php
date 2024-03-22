@@ -12,6 +12,7 @@ class Persona extends Model
         'nombre', 
         'apellido', 
         'fecha_nacimiento',
-        'genero'
+        'genero', 
+        'profesion_id'
     ];
 }
