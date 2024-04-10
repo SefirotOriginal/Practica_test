@@ -15,4 +15,7 @@ class Persona extends Model
         'genero', 
         'profesion_id'
     ];
+    public function profesion(){
+        return $this->belongsTo(Profesion::class);
+    }
 }

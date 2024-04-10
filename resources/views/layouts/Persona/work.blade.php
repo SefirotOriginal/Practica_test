@@ -13,7 +13,7 @@
                     <div class="relative w-full flex-grow flex-1 px-4 text-right">
                         <a class=" text-sm bg-sky-500 text-white hover:bg-blue-700 font-bold 
                         px-4 py-2 rounded outline-none focus:outline-none mb-5 ease-linear 
-                        transition-all duration-150" type="button" href={{ route ('persona.create') }}>
+                        transition-all duration-150" type="button" href={{ route ('profesion.create') }}>
                             Agregar profesion
                         </a>
                     </div>

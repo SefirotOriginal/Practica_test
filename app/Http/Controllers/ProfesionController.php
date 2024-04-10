@@ -15,6 +15,11 @@ class ProfesionController extends Controller
     {
         //
         $profesions = Profesion::all();
+        
+        $title = 'Borrar persona';
+        $text = "¿Estas seguro que quieres eliminar este registro?";
+        confirmDelete($title, $text);
+        
         return view('layouts.persona.work', compact('profesions'));
     }
 
@@ -24,6 +29,7 @@ class ProfesionController extends Controller
     public function create()
     {
         //
+        return view('layouts.persona.createProfesion');
     }
 
     /**
@@ -32,6 +38,8 @@ class ProfesionController extends Controller
     public function store(StoreProfesionRequest $request)
     {
         //
+        Profesion::create($request->all());
+        return redirect()->route('profesion.index')->withToastSuccess('Se ha creado exitosamente!');
     }
 
     /**
@@ -48,6 +56,7 @@ class ProfesionController extends Controller
     public function edit(Profesion $profesion)
     {
         //
+        return view('layouts.persona.ProfesionEdit', compact('profesion'));
     }
 
     /**
@@ -56,6 +65,8 @@ class ProfesionController extends Controller
     public function update(UpdateProfesionRequest $request, Profesion $profesion)
     {
         //
+        $profesion->update($request->all());
+        return redirect()->route('profesion.index')->withToastSuccess('Se ha editado exitosamente!');
     }
 
     /**
@@ -64,5 +75,7 @@ class ProfesionController extends Controller
     public function destroy(Profesion $profesion)
     {
         //
+        $profesion->delete();
+        return redirect()->route('profesion.index');
     }
 }

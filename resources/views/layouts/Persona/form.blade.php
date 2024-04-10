@@ -62,7 +62,7 @@
                 Profesion
             </label>
             <div class="relative">
-                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="genero" id="genero" required>
+                <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" name="profesion_id" id="profesion_id" required>
                     <option value="">Seleccione un género</option>
                     <option value="1" @if(old('profesion_id', $persona->profesion_id ?? '') == '1') selected @endif>Medico</option>
                     <option value="2" @if(old('profesion_id', $persona->profesion_id ?? '') == '2') selected @endif>Obrero</option>
