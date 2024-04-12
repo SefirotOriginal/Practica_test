@@ -47,6 +47,18 @@
             @endif
         </div>
 
+        <div>
+            <x-input-label for="rol" :value="__('Rol')" />
+            <select id="rol" name="rol" class="mt-1 block
+            w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring
+             focus:ring-indigo-200 focus:ring-opacity-50" required>
+                @foreach ($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                @endforeach      
+            </select>
+            <x-input-error class="mt-2" :messages="$errors->get('rol')" />
+        </div>
+
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
 

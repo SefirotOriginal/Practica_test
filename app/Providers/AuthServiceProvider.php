@@ -4,7 +4,8 @@ namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
+use App\Models\Profesion;
+use App\Policies\ProfesionPolicy;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -14,6 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         //
+        Profesion::class => ProfesionPolicy::class,
     ];
 
     /**

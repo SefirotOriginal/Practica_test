@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profesion;
 use App\Http\Requests\StoreProfesionRequest;
 use App\Http\Requests\UpdateProfesionRequest;
+use Illuminate\View\View;
 
 class ProfesionController extends Controller
 {
@@ -14,12 +15,13 @@ class ProfesionController extends Controller
     public function index()
     {
         //
-        $profesions = Profesion::all();
-        
-        $title = 'Borrar persona';
+        $this->authorize('viewAny', Profesion::class, );
+
+        $title = 'Borrar profesion';
         $text = "¿Estas seguro que quieres eliminar este registro?";
         confirmDelete($title, $text);
         
+        $profesions = Profesion::all();
         return view('layouts.persona.work', compact('profesions'));
     }
 

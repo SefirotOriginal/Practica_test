@@ -11,9 +11,12 @@ class ProfesionPolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user): Response
     {
         //
+        return $user->hasPermissionTo('ver profesion')
+        ? Response::allow()
+        : Response::deny('No tienes permiso para ver');
     }
 
     /**
