@@ -57,7 +57,7 @@
             </div>
         </div>
 
-        <div class="w-full md:w-1/2 px-3">
+        <div class="w-full md:w-1/2 px-3 mt-2">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="profesion_id">
                 Profesion
             </label>
@@ -79,7 +79,7 @@
        
     </div>
     {{-- Botones --}}
-    <div class="min-w-full flex justify-end">                        
+    <div class="min-w-full flex justify-center">                        
 
 
         <a class=" shadow mx-3 bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-10 rounded" href="{{ route('persona.index') }}">

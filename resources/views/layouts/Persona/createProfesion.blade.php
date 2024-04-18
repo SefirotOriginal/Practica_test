@@ -12,15 +12,15 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 ">
                    
                     {{-- Formulario --}}                  
-                    <form class="w-1/4 h-1/4" method="POST" action="{{ route('profesion.store') }}" >
+                    <form class="w-full" method="POST" action="{{ route('profesion.store') }}" >
                         @csrf
-                        <div class="flex flex-wrap -mx-3 mb-6">
+                        <div class="flex flex-wrap mx-5 mb-6">
                    
                             <div class="w-full md:w-full px-3 mb-6 md:mb-0 ">
                                 <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 place-content-center" for="nombre">
                                     Nombre
                                 </label>
-                                <input class="appearance-none block w-1/4 bg-gray-200 text-gray-700 border border-red-500
+                                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
                                 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white " 
                                 required type="text" placeholder="Medico" name="nombre" id="nombre">
                                 @error('nombre')
@@ -35,8 +35,7 @@
                              text-white font-bold py-2 px-10 rounded " href="{{ route('profesion.index') }}">
                                 Regresar
                             </a>
-                            <button class="  shadow mx-3 bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none
-                            text-white font-bold py-2 px-10 rounded" type="submit">
+                            <button class="  shadow mx-3 bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-10 rounded" type="submit">
                                 Agregar
                             </button>
                         </div>
