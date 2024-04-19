@@ -3,6 +3,18 @@
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             Crear Usuario
         </h2>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        "C:\laragon\www\Practica_de_servicio\node_modules\select2"
+
+        <script>
+            $(document).ready(function() {
+                $('.js-example-basic-multiple').select2({
+                    theme: "classic"
+                });
+            });
+        </script>
     </x-slot>
 
     <div class="py-12">
@@ -33,10 +45,9 @@
                         </div>
 
                         <div>
-                            <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="password">Roll</label>
-                            <select id="rol" name="rol" class="mt-1 block
-            w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring
-             focus:ring-indigo-200 focus:ring-opacity-50" required>
+                            <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="rol">Roll</label>
+                            <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
+                                rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white js-example-basic-multiple " id="rol" name="rol[]" multiple="multiple" required>
                                 @foreach ($roles as $rol)
                                 <option value="{{$rol->id}}">{{$rol->name}}</option>
                                 @endforeach
@@ -44,8 +55,8 @@
                             <x-input-error class="mt-2" :messages="$errors->get('rol')" />
                         </div>
 
-                        <div class=" mt-4 min-w-full flex justify-center">                        
-                   <!-- hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-10 rounded -->
+                        <div class=" mt-4 min-w-full flex justify-center">
+                            <!-- hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-10 rounded -->
                             <a class=" shadow mx-3 bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none
                              text-white font-bold py-2 px-10 rounded " href="{{ route('user.index') }}">
                                 Regresar

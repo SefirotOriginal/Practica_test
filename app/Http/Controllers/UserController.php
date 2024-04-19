@@ -20,8 +20,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
-        return view('layouts.usuario.IndexUser', compact('users'));
+        $roles = Role::all();
+        return view('layouts.usuario.IndexUser', compact('users', 'roles'));
     }
 
     /**

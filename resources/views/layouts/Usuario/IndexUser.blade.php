@@ -29,6 +29,10 @@
                                     <th scope="col" class="px-6 py-3">
                                         Roll
                                     </th>
+                                    <th scope="col" class="px-6 py-3">
+                                        Accion
+                                    </th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,12 +44,18 @@
                                     <th class="px-6 py-4">
                                         {{$user->email}}
                                     </th>
-                                    <th /th class="px-6 py-4">
-                                        {{$user->role}}
+                                    <th class="px-6 py-4">
+                                        @foreach($roles as $rol)
+                                            @if($user->roles->contains($rol))
+                                                {{ $rol->name }}
+                                            @endif
+                                        @endforeach
+
+                                        <!-- {{$user->role}} -->
                                     </th>
-                                    <th /th class="px-6 py-4">
+                                    <th class="px-6 py-4">
                                         <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
-                                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1"  data-confirm-delete="true">Borrar</a> 
+                                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1" data-confirm-delete="true">Borrar</a>
                                     </th>
                                 </tr>
                                 @endforeach
