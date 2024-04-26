@@ -26,7 +26,13 @@ class StoreUserReques extends FormRequest
             //
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
-            'rol' => ['nullable']
+            'roles.*'  => [
+                'integer',
+            ],
+            'roles'    => [
+                'required',
+                'array',
+            ],
         ];
     }
 }

@@ -6,7 +6,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-        "C:\laragon\www\Practica_de_servicio\node_modules\select2"
+
 
         <script>
             $(document).ready(function() {
@@ -47,9 +47,9 @@
                         <div>
                             <label class="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" for="rol">Roll</label>
                             <select class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500
-                                rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white js-example-basic-multiple " id="rol" name="rol[]" multiple="multiple" required>
-                                @foreach ($roles as $rol)
-                                <option value="{{$rol->id}}">{{$rol->name}}</option>
+                                rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white js-example-basic-multiple " id="roles" name="roles[]" multiple="multiple" required>
+                                @foreach($roles as $id => $roles)
+                                <option value="{{ $id }}" {{ in_array($id, old('roles', [])) ? 'selected' : '' }}>{{ $roles }}</option>
                                 @endforeach
                             </select>
                             <x-input-error class="mt-2" :messages="$errors->get('rol')" />

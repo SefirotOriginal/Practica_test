@@ -3,6 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use PHPUnit\Framework\Constraint\IsTrue;
+use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class UpdateUserReques extends FormRequest
 {
@@ -11,7 +14,7 @@ class UpdateUserReques extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +26,9 @@ class UpdateUserReques extends FormRequest
     {
         return [
             //
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
+            'rol' => ['nullable']
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Http\Requests\StoreUserReques;
+use App\Http\Requests\UpdateUserReques;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,6 +14,9 @@ use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -21,6 +25,7 @@ class UserController extends Controller
     {
         $users = User::all();
         $roles = Role::all();
+
         return view('layouts.usuario.IndexUser', compact('users', 'roles'));
     }
 
@@ -30,7 +35,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        $roles = Role::all(); 
+        $roles = Role::all()->pluck('name', 'id');
         return view('layouts.usuario.UserCreate', compact('roles'));
     }
 
@@ -40,32 +45,16 @@ class UserController extends Controller
     public function store(StoreUserReques $request)
     {
         //
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'rol' => 'required|exists:roles,id', // Asegura que el rol seleccionado exista en la base de datos
-        ]);
-    
-        // Crea un nuevo usuario
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-        ]);
-    
-        // Asigna el rol seleccionado al usuario
-        $rolId = $validatedData['rol'];
-        $rol = Role::findOrFail($rolId);
-        $user->roles()->attach($rol);
-            
-        return redirect()->route('user.index');
+        $user = User::create($request->all());
+        $user->roles()->sync($request->input('roles', []));
+
+        return redirect()->route('user.index')->withToastSuccess('Se ha creado exitosamente!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(User $profesion)
+    public function show(User $user)
     {
         //
     }
@@ -73,19 +62,25 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $profesion)
+    public function edit(User $user)
     {
-        //
-        
+        $roles = Role::all()->pluck('name', 'id');
+
+        $user->load('roles');
+        return view('layouts.usuario.EditUser', compact('roles', 'user'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(User $request)
+    public function update(UpdateUserReques $request, User $user)
     {
-        //
+        $user->update($request->all());
+        $user->roles()->sync($request->input('roles', []));
+        return redirect()->route('user.index')->withToastSuccess('Se ha editado exitosamente!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -93,5 +88,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $user->delete();
+        return redirect()->route('user.index');
     }
 }

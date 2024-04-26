@@ -46,16 +46,18 @@
                                     </th>
                                     <th class="px-6 py-4">
                                         @foreach($roles as $rol)
-                                            @if($user->roles->contains($rol))
-                                                {{ $rol->name }}
-                                            @endif
+                                        @if($user->roles->contains($rol))
+                                        {{ $rol->name }}
+                                        @endif
                                         @endforeach
-
-                                        <!-- {{$user->role}} -->
                                     </th>
                                     <th class="px-6 py-4">
-                                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
-                                        <a href="#" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1" data-confirm-delete="true">Borrar</a>
+                                        <a href="{{ route('user.edit', $user->id) }}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline px-1">Editar</a>
+                                        <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline px-1" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Borrar</button>
+                                        </form>
                                     </th>
                                 </tr>
                                 @endforeach
