@@ -64,6 +64,7 @@
                             <button class="  shadow mx-3 bg-indigo-500 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-10 rounded" type="submit">
                                 Agregar
                             </button>
+                        </div>
                     </form>
                     {{-- --}}
                 </div>
